@@ -1,5 +1,6 @@
 import express from 'express';
 import dotenv from "dotenv";
+import MoviesRouter from './routers/movies.route.js';
 import { getSequelize } from './database/db.js';
 dotenv.config();
 
@@ -23,10 +24,7 @@ const sequelize = getSequelize();
 
 app.use(express.json());
 
-//Ejemplo de un endpoint básico
-app.use("/peliculas", (req, res) => {
-  res.send("Endpoint de películas no implementado aún.");
-})
+app.use("/movie", MoviesRouter);
 
 app.listen(PORT, () => {
   console.log(`Servidor corriendo en el puerto ${PORT}`);
