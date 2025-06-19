@@ -1,6 +1,6 @@
 import axios from "axios";
 
-export const getAllPopularMovies = async (req, res) => {
+export const getAllPopularMovies = async (page) => {
   try {
     const API_KEY = process.env.THEMOVIEDB_API_KEY;
     const BASE_URL = "https://api.themoviedb.org/3";
@@ -9,7 +9,7 @@ export const getAllPopularMovies = async (req, res) => {
       params: {
         api_key: API_KEY,
         language: "es-ES",
-        page: 1,
+        page: page,
       },
     });
     
