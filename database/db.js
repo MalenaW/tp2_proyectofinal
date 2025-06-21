@@ -21,13 +21,13 @@ export const getSequelize = () => {
       {
         dialect: 'mssql',
         dialectModule: tedious,
-        host: process.env.DB_HOST,      // 
-        port: parseInt(process.env.DB_PORT), // 
+        host: process.env.DB_HOST,     
+        port: parseInt(process.env.DB_PORT), 
         dialectOptions: {
           options: {
             encrypt: false,
             trustServerCertificate: true,
-            instanceName: process.env.DB_INSTANCE,
+         
           }
         },
         logging: false
