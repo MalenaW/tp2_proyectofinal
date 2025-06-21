@@ -9,7 +9,7 @@ export default (sequelize, DataTypes) => {
     password: { type: DataTypes.STRING, allowNull: false },
     role: { type: DataTypes.ENUM('user', 'admin'), defaultValue: 'user' }
    }, {
-    //desde aca
+    
     hooks: {
       beforeCreate: async (user) => {
         const salt = await bcrypt.genSalt(10);
