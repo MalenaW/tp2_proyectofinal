@@ -1,10 +1,8 @@
 import axios from "axios";
 
-const BASE_URL = "https://api.themoviedb.org/3";
-
 export const getAllPopularMovies = async (page) => {
   try {
-    const response = await axios.get(`${BASE_URL}/movie/popular`, {
+    const response = await axios.get(`${process.env.THEMOVIEDB_BASE_URL}/movie/popular`, {
       params: {
         api_key: process.env.THEMOVIEDB_API_KEY,
         language: "es-ES",
@@ -21,7 +19,7 @@ export const getAllPopularMovies = async (page) => {
 
 export const getMovieByID = async (id) => {
   try {
-      const response = await axios.get(`${BASE_URL}/movie/${id}`, {
+      const response = await axios.get(`${process.env.THEMOVIEDB_BASE_URL}/movie/${id}`, {
       params: {
         api_key: process.env.THEMOVIEDB_API_KEY,
         language: 'es-ES',
@@ -36,7 +34,7 @@ export const getMovieByID = async (id) => {
 
 export const getAllMoviesByGenre = async (page, genreId) => {
   try {
-    const response = await axios.get(`${BASE_URL}/discover/movie`, {
+    const response = await axios.get(`${process.env.THEMOVIEDB_BASE_URL}/discover/movie`, {
       params: {
         api_key: process.env.THEMOVIEDB_API_KEY,
         language: "es-ES",
