@@ -1,6 +1,6 @@
 import axios from "axios";
 
-  const BASE_URL = "https://api.themoviedb.org/3";
+const BASE_URL = "https://api.themoviedb.org/3";
 
 export const getAllPopularMovies = async (page) => {
   try {
@@ -33,3 +33,22 @@ export const getMovieByID = async (id) => {
     throw new Error(err.message);
   }
 }
+
+export const getAllMoviesByGenre = async (page, genreId) => {
+  try {
+    const response = await axios.get(`${BASE_URL}/discover/movie`, {
+      params: {
+        api_key: process.env.THEMOVIEDB_API_KEY,
+        language: "es-ES",
+        with_genres: genreId,
+        page: page,
+      },
+    });
+
+    return response.data.results;
+  } catch (err) {
+    console.error(`Service | ${err}`);
+    throw new Error("No se pudieron obtener las películas por género.");
+  }
+};
+
