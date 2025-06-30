@@ -14,13 +14,12 @@ export const registerUser = async (req, res) => {
       return res.status(400).json({ message: 'Ese email ya está registrado.' });
     }
 
-    const passwordHasheado = await bcrypt.hash(password, 10);
-
     const nuevoUsuario = await models.User.create({
       nombre,
       email,
-      password: passwordHasheado
+      password
     });
+    
 
     res.status(201).json({
       message: 'Usuario registrado con éxito',
@@ -37,3 +36,29 @@ export const registerUser = async (req, res) => {
     res.status(500).json({ message: 'Error interno del servidor.' });
   }
 };
+
+export const loginUser = async (req, res) => {
+  const { email, password } = req.body;
+
+  try {
+    const user = await models.User.findOne({ where: { email } });
+
+    if (!user) {
+      return res.status(401).json({ message: 'Usuario no encontrado.' });
+    }
+
+    
+    const passwordValida = await bcrypt.compare(password, user.password);
+    
+
+    if (!passwordValida) {
+      return res.status(401).json({ message: 'Contraseña incorrecta.' });
+    }
+
+    res.status(200).json({ message: 'Inicio de sesión exitoso.', user });
+    
+  } catch (error) {
+    console.error('Error en inicio de sesión:', error);
+    res.status(500).json({ message: 'Error interno del servidor.' });
+  }
+}
