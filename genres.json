@@ -1,0 +1,21 @@
+[
+  { "id": 28, "nombre": "Acción" },
+  { "id": 12, "nombre": "Aventura" },
+  { "id": 16, "nombre": "Animación" },
+  { "id": 35, "nombre": "Comedia" },
+  { "id": 80, "nombre": "Crimen" },
+  { "id": 99, "nombre": "Documental" },
+  { "id": 18, "nombre": "Drama" },
+  { "id": 10751, "nombre": "Familia" },
+  { "id": 14, "nombre": "Fantasía" },
+  { "id": 36, "nombre": "Historia" },
+  { "id": 27, "nombre": "Terror" },
+  { "id": 10402, "nombre": "Música" },
+  { "id": 9648, "nombre": "Misterio" },
+  { "id": 10749, "nombre": "Romance" },
+  { "id": 878, "nombre": "Ciencia ficción" },
+  { "id": 10770, "nombre": "Película de TV" },
+  { "id": 53, "nombre": "Suspense" },
+  { "id": 10752, "nombre": "Bélica" },
+  { "id": 37, "nombre": "Western" }
+]
