@@ -43,6 +43,34 @@ Obtiene una lista de películas según un género específico.
 ```
 ---
 
+### ❤️ FAVORITES
+
+---
+
+#### `GET /favorite/`
+
+Lista todas las películas favoritas del usuario autenticado.
+
+---
+
+#### `POST /favorite/:movieId`
+
+Agrega una película a favoritos.
+
+**Parámetros:**
+- `movieId` (número): ID de la película que se desea marcar como favorita.
+
+---
+
+#### `DELETE /favorite/:movieId`
+
+Elimina una película de favoritos.
+
+**Parámetros:**
+- `movieId` (número): ID de la película que se desea eliminar de favoritos.
+
+---
+
 ## 🧱 CONFIGURACIÓN DE LA BASE DE DATOS (SQL Server)
 
 Antes de iniciar el servidor por primera vez, es necesario configurar la base de datos en SQL Server:
