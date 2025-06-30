@@ -1,10 +1,17 @@
-import { Router } from "express";
-import { getFavoriteMovies, addFavoriteMovie, removeFavoriteMovie } from "../controllers/favorites.controller.js";
+import { Router } from 'express';
+import {
+  agregarFavorito,
+  eliminarFavorito,
+  listarFavoritos
+} from '../controllers/favorites.controller.js';
+import { authenticateToken } from '../middlewares/auth.js';
+
 
 const router = Router();
 
-router.get("/", getFavoriteMovies)
-router.post("/:movieId", addFavoriteMovie)
-router.delete("/:movieId", removeFavoriteMovie)
+router.post('/:movieId', authenticateToken, agregarFavorito);
+router.delete('/:movieId', authenticateToken, eliminarFavorito);
+router.get('/', authenticateToken, listarFavoritos);
 
 export default router;
+

@@ -1,6 +1,7 @@
 import models from "../models/index.js";
 import { getMovieByID } from "./movies.service.js";
 
+
 export const getAllFavoriteMovies = async (userId) => {
   try {
     const favorites = await models.Favorite.findAll({

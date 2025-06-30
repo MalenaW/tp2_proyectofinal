@@ -1,4 +1,7 @@
 import axios from "axios";
+import dotenv from 'dotenv';
+dotenv.config();
+
 
 export const getAllPopularMovies = async (page) => {
   try {
@@ -16,6 +19,7 @@ export const getAllPopularMovies = async (page) => {
     throw new Error(err.message);
   }
 };
+
 
 export const getMovieByID = async (id) => {
   try {
