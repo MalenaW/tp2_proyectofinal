@@ -1,7 +1,8 @@
-import models from '../models/index.js';
 import bcrypt from 'bcrypt';
+import { findUserByEmail, createUser } from '../services/users.service.js';
 
 export const registerUser = async (req, res) => {
+  console.log("BODY LLEGANDO", req.body);
   const { nombre, email, password } = req.body;
 
   try {
@@ -9,18 +10,13 @@ export const registerUser = async (req, res) => {
       return res.status(400).json({ message: 'Faltan campos requeridos.' });
     }
 
-    const existente = await models.User.findOne({ where: { email } });
+    const existente = await findUserByEmail(email);
     if (existente) {
       return res.status(400).json({ message: 'Ese email ya está registrado.' });
     }
 
     const passwordHasheado = await bcrypt.hash(password, 10);
-
-    const nuevoUsuario = await models.User.create({
-      nombre,
-      email,
-      password: passwordHasheado
-    });
+    const nuevoUsuario = await createUser({ nombre, email, password: passwordHasheado });
 
     res.status(201).json({
       message: 'Usuario registrado con éxito',
