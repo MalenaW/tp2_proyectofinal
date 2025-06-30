@@ -4,14 +4,12 @@ import {
   eliminarFavorito,
   listarFavoritos
 } from '../controllers/favorites.controller.js';
-import { authenticateToken } from '../middlewares/auth.js';
-
 
 const router = Router();
 
-router.post('/:movieId', authenticateToken, agregarFavorito);
-router.delete('/:movieId', authenticateToken, eliminarFavorito);
-router.get('/', authenticateToken, listarFavoritos);
+router.post('/:movieId', agregarFavorito);
+router.delete('/:movieId', eliminarFavorito);
+router.get('/', listarFavoritos);
 
 export default router;
 

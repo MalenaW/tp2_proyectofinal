@@ -6,6 +6,7 @@ import MoviesRouter from './routers/movies.route.js';
 import FavoritesRouter from './routers/favorites.route.js';
 import { getSequelize } from './database/db.js';
 import UsersRouter from './routers/users.route.js';
+import { authenticateToken } from './middlewares/auth.js';
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -34,7 +35,7 @@ const sequelize = getSequelize();
 app.use(express.json());
 
 app.use("/movie", MoviesRouter);
-app.use("/favorite", FavoritesRouter);
+app.use("/favorite",authenticateToken, FavoritesRouter);
 app.use("/users", UsersRouter);
 
 app.listen(PORT, () => {
