@@ -11,8 +11,6 @@ let sequelize;
 // Evita crear múltiples instancias de Sequelize
 
 export const getSequelize = () => {
-  console.log("Valor de DB_HOST:", process.env.DB_HOST);
-
   if (!sequelize) {
     sequelize = new Sequelize(
       process.env.DB_NAME,

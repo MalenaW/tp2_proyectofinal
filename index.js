@@ -3,15 +3,14 @@ import dotenv from "dotenv";
 dotenv.config();
 import express from 'express';
 import MoviesRouter from './routers/movies.route.js';
+import FavoritesRouter from './routers/favorites.route.js';
 import { getSequelize } from './database/db.js';
 import UsersRouter from './routers/users.route.js';
-
-
 
 const app = express();
 const PORT = process.env.PORT || 3000;
 
-// ------------Prueba de conexión con DB (esto no va ir acá)-------------
+// ------------Prueba de conexión con DB-------------
 
 const sequelize = getSequelize();
 
@@ -30,11 +29,12 @@ const sequelize = getSequelize();
   }
 })();
 
-// ------------Prueba de conexión con DB (esto no va ir acá)-------------
+// ------------Prueba de conexión con DB-------------
 
 app.use(express.json());
 
 app.use("/movie", MoviesRouter);
+app.use("/favorite", FavoritesRouter);
 app.use("/users", UsersRouter);
 
 app.listen(PORT, () => {
