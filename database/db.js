@@ -31,3 +31,22 @@ export const getSequelize = () => {
   }
   return sequelize;
 };
+
+(async () => {
+  const sequelizeInstance = getSequelize();
+
+  console.log('Intentando conectar a la base de datos con:');
+  console.table({
+    DB: config.db.name,
+    Usuario: config.db.user,
+    Host: config.db.host,
+    Puerto: config.db.port,
+  });
+
+  try {
+    await sequelizeInstance.authenticate();
+    console.log('✅ Conexión exitosa a la base de datos.');
+  } catch (error) {
+    console.error('❌ Error al conectar a la base de datos:\n', error.message);
+  }
+})();
