@@ -1,9 +1,6 @@
-import dotenv from 'dotenv';
-dotenv.config();
-
-
 import { Sequelize } from 'sequelize';
 import tedious from 'tedious';
+import config from '../config/dotenv.config.js';
 
 let sequelize;
 
@@ -13,14 +10,14 @@ let sequelize;
 export const getSequelize = () => {
   if (!sequelize) {
     sequelize = new Sequelize(
-      process.env.DB_NAME,
-      process.env.DB_USER,
-      process.env.DB_PASSWORD,
+      config.db.name,
+      config.db.user,
+      config.db.password,
       {
         dialect: 'mssql',
         dialectModule: tedious,
-        host: process.env.DB_HOST,     
-        port: parseInt(process.env.DB_PORT), 
+        host: config.db.host,     
+        port: parseInt(config.db.port), 
         dialectOptions: {
           options: {
             encrypt: false,
