@@ -8,9 +8,10 @@ import ReviewsRouter from './routers/reviews.route.js';
 import { getSequelize } from './database/db.js';
 import UsersRouter from './routers/users.route.js';
 import { authenticateToken } from './middlewares/auth.js';
+import config from './config/dotenv.config.js';
 
 const app = express();
-const PORT = process.env.PORT || 3000;
+const PORT = config.port || 3000;
 
 // ------------Prueba de conexión con DB-------------
 
@@ -18,10 +19,10 @@ const sequelize = getSequelize();
 
 (async () => {
   console.log('Intentando conectar a DB con:', {
-  name: process.env.DB_NAME,
-  user: process.env.DB_USER,
-  host: process.env.DB_HOST,
-  port: process.env.DB_PORT
+  name: config.db.name,
+  user: config.db.user,
+  host: config.db.host,
+  port: config.db.port
 });
   try {
     await sequelize.authenticate();
@@ -36,9 +37,9 @@ const sequelize = getSequelize();
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-app.use("/movie", authenticateToken, MoviesRouter);
+app.use("/movie", MoviesRouter);
 app.use("/favorite",authenticateToken, FavoritesRouter);
-app.use("/review",authenticateToken, ReviewsRouter);
+app.use("/review", ReviewsRouter);
 app.use("/users", UsersRouter);
 
 app.listen(PORT, () => {

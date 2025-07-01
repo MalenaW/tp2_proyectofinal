@@ -1,13 +1,11 @@
 import axios from "axios";
-import dotenv from 'dotenv';
-dotenv.config();
-
+import config from '../config/dotenv.config.js';
 
 export const getAllPopularMovies = async (page) => {
   try {
-    const response = await axios.get(`${process.env.THEMOVIEDB_BASE_URL}/movie/popular`, {
+    const response = await axios.get(`${config.themoviedb.baseUrl}/movie/popular`, {
       params: {
-        api_key: process.env.THEMOVIEDB_API_KEY,
+        api_key: config.themoviedb.apiKey,
         language: "es-ES",
         page: page,
       },
@@ -23,9 +21,9 @@ export const getAllPopularMovies = async (page) => {
 
 export const getMovieByID = async (id) => {
   try {
-      const response = await axios.get(`${process.env.THEMOVIEDB_BASE_URL}/movie/${id}`, {
+      const response = await axios.get(`${config.themoviedb.baseUrl}/movie/${id}`, {
       params: {
-        api_key: process.env.THEMOVIEDB_API_KEY,
+        api_key: config.themoviedb.apiKey,
         language: 'es-ES',
       },
     });
@@ -38,9 +36,9 @@ export const getMovieByID = async (id) => {
 
 export const getAllMoviesByGenre = async (page, genreId) => {
   try {
-    const response = await axios.get(`${process.env.THEMOVIEDB_BASE_URL}/discover/movie`, {
+    const response = await axios.get(`${config.themoviedb.baseUrl}/discover/movie`, {
       params: {
-        api_key: process.env.THEMOVIEDB_API_KEY,
+        api_key: config.themoviedb.apiKey,
         language: "es-ES",
         with_genres: genreId,
         page: page,

@@ -1,4 +1,5 @@
 import jwt from 'jsonwebtoken';
+import config from '../config/dotenv.config.js';
 
 export const authenticateToken = (req, res, next) => {
   const authHeader = req.headers['authorization'];
@@ -6,7 +7,7 @@ export const authenticateToken = (req, res, next) => {
 
   if (!token) return res.status(401).json({ message: 'Token requerido' });
 
-  jwt.verify(token, process.env.JWT_SECRET, (err, user) => {
+  jwt.verify(token, config.jwt.secret, (err, user) => {
     if (err) return res.status(403).json({ message: 'Token inválido' });
 
     req.user = user; 
