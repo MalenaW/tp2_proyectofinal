@@ -41,6 +41,9 @@ export const updateReview = async (req, res) => {
         if (!comment || !rating) {
             return res.status(400).json({ message: "Contenido y calificación son obligatorios." });
         }
+        if (rating < 1 || rating > 10) {
+            return res.status(400).json({ message: "La calificación debe estar entre 1 y 10." });
+        }
         const updatedReview = await updateReviewById(reviewId, userId, comment, rating);
         if (!updatedReview) {
             return res.status(404).json({ message: "Reseña no encontrada o no pertenece al usuario." });
