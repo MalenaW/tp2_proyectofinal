@@ -9,6 +9,7 @@ import { getSequelize } from './database/db.js';
 import UsersRouter from './routers/users.route.js';
 import { authenticateToken } from './middlewares/auth.js';
 import config from './config/dotenv.config.js';
+import { notImplemented } from "./middlewares/notImplementedRoute.js";
 
 const app = express();
 const PORT = config.port || 3000;
@@ -36,6 +37,9 @@ const sequelize = getSequelize();
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+
+//Middleware para manejar rutas no implementadas
+app.use(notImplemented);
 
 app.use("/movie", MoviesRouter);
 app.use("/favorite",authenticateToken, FavoritesRouter);
