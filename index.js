@@ -38,13 +38,13 @@ const sequelize = getSequelize();
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-//Middleware para manejar rutas no implementadas
-app.use(notImplemented);
-
 app.use("/movie", MoviesRouter);
 app.use("/favorite",authenticateToken, FavoritesRouter);
 app.use("/review", ReviewsRouter);
 app.use("/users", UsersRouter);
+
+//Middleware para manejar rutas no implementadas
+app.use(notImplemented);
 
 app.listen(PORT, () => {
   console.log(`Servidor corriendo en el puerto ${PORT}`);
