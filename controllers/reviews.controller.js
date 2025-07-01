@@ -22,6 +22,9 @@ export const addReview = async (req, res) => {
         if (!comment || !rating) {
             return res.status(400).json({ message: "Contenido y calificación son obligatorios." });
         }
+        if (rating < 1 || rating > 10) {
+            return res.status(400).json({ message: "La calificación debe estar entre 1 y 10." });
+        }
         const newReview = await addNewReview(movieId, userId, comment, rating);
         return res.status(201).json(newReview);
     }catch(error){
