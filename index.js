@@ -7,6 +7,7 @@ import FavoritesRouter from './routers/favorites.route.js';
 import ReviewsRouter from './routers/reviews.route.js';
 import { getSequelize } from './database/db.js';
 import UsersRouter from './routers/users.route.js';
+import AdminRouter from './routers/admin.route.js';
 import { authenticateToken } from './middlewares/auth.js';
 import config from './config/dotenv.config.js';
 
@@ -41,6 +42,7 @@ app.use("/movie", MoviesRouter);
 app.use("/favorite",authenticateToken, FavoritesRouter);
 app.use("/review", ReviewsRouter);
 app.use("/users", UsersRouter);
+app.use("/admin", AdminRouter);
 
 app.listen(PORT, () => {
   console.log(`Servidor corriendo en el puerto ${PORT}`);
