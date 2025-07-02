@@ -146,6 +146,24 @@ Elimina una reseña por su ID.
 
 ---
 
+### 👮‍♂️ ADMIN
+
+Estas rutas requieren autenticación como administrador (requireAdminAuth).
+
+---
+
+#### `GET /admin/users`
+
+Obtiene una lista de todos los usuarios registrados en la base de datos.
+
+---
+
+#### `DELETE /admin/reviews/:reviewId`
+
+Permite aL administrador eliminar cualquier reseña de la base de datos.
+
+---
+
 ## 🧱 CONFIGURACIÓN DE LA BASE DE DATOS (SQL Server)
 
 Antes de iniciar el servidor por primera vez, es necesario configurar la base de datos en SQL Server:
