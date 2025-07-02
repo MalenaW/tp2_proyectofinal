@@ -41,8 +41,8 @@ export const addFavoriteMovieS = async (userId, movieId) => {
       voteAverage: movie.vote_average,
     });
   } catch (error) {
-    console.error(`Service | Error adding favorite movie: ${error}`);
-    throw new Error("Error adding favorite movie");
+    console.error(`Service | ${error}`);
+    throw new Error(`Service | ${error}`);
   }
 };
 
@@ -52,9 +52,9 @@ export const deleteFavoriteMovieS = async (userId, movieId) => {
       where: { userId, movieId },
     });
 
-    return result > 0; // true si eliminó, false si no encontró
+    return result > 0;
   } catch (error) {
-    console.error(`Service | Error deleting favorite movie: ${error}`);
-    throw new Error("Error deleting favorite movie");
+    console.error(`Service | ${error}`);
+    throw new Error(`Service | ${error}`);
   }
 };

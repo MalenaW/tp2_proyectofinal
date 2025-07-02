@@ -1,10 +1,10 @@
 import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
 import { findUserByEmail, createUser } from '../services/users.service.js';
+import config from '../config/dotenv.config.js';
 
 
 export const registerUser = async (req, res) => {
-  console.log("BODY LLEGANDO", req.body);
   const { nombre, email, password } = req.body;
 
   try {
@@ -51,8 +51,8 @@ export const loginUser = async (req, res) => {
     }
 
     const token = jwt.sign(
-      { id: user.id, email: user.email },
-      process.env.JWT_SECRET,
+      { id: user.id, email: user.email, role: user.role },
+      config.jwt.secret,
       { expiresIn: '1h' }
     );
 

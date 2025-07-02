@@ -1,5 +1,37 @@
 ## ENDPOINTS
 
+### 🧑‍💻 AUTH
+
+---
+
+#### `POST /users/register`
+
+Registra un nuevo usuario en la base de datos.
+
+**Body esperado:**
+```
+{
+  "nombre": "Juan",
+  "email": "juan@example.com",
+  "password": "123456"
+}
+```
+---
+
+#### `POST /users/login`
+
+Inicia sesión y retorna un token JWT.
+
+**Body esperado:**
+```
+{
+  "email": "juan@example.com",
+  "password": "123456"
+}
+```
+
+---
+
 ### 🎬 MOVIES
 
 ---
@@ -68,6 +100,67 @@ Elimina una película de favoritos.
 
 **Parámetros:**
 - `movieId` (número): ID de la película que se desea eliminar de favoritos.
+
+---
+
+### 📝 REVIEWS
+
+---
+
+#### `GET /review/:movieId`
+
+Lista todas las reseñas para una película específica.
+
+---
+
+#### `POST /review/new/:movieId`
+
+Lista todas las reseñas para una película específica.
+
+**Body esperado:**
+```
+{
+  "rating": 8,
+  "comment": "Excelente película, muy recomendable."
+}
+```
+
+---
+
+#### `PUT /review/:reviewId`
+
+Actualiza una reseña existente.
+
+**Body esperado:**
+```
+{
+  "rating": 7,
+  "comment": "Mejoró con una segunda vista."
+}
+```
+---
+
+#### `DELETE /review/:reviewId`
+
+Elimina una reseña por su ID.
+
+---
+
+### 👮‍♂️ ADMIN
+
+Estas rutas requieren autenticación como administrador (requireAdminAuth).
+
+---
+
+#### `GET /admin/users`
+
+Obtiene una lista de todos los usuarios registrados en la base de datos.
+
+---
+
+#### `DELETE /admin/reviews/:reviewId`
+
+Permite aL administrador eliminar cualquier reseña de la base de datos.
 
 ---
 
