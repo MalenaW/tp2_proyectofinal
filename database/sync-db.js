@@ -10,7 +10,7 @@ const createDefaultAdmin = async () => {
     });
 
     if (existingAdmin) {
-      console.log('Usuario admin ya existe');
+      console.log('* Usuario admin ya existe');
       return;
     }
 
@@ -21,7 +21,7 @@ const createDefaultAdmin = async () => {
       role: 'admin'
     });
 
-    console.log('Usuario admin creado automáticamente');
+    console.log('* Usuario admin creado automáticamente');
   } catch (error) {
     console.error('Error al crear usuario admin:', error);
   }
